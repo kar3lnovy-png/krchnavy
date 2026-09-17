@@ -12,11 +12,19 @@
             padding: 0;
         }
 
-        /* Hořčicově žluté pozadí inspirované referenční grafikou */
+        /* Barvy z referenčního obrázku "Screenshot 2026-09-17 at 15.27.09_2.jpg" */
+        :root {
+            --bg-color: #F1A226; /* Žluto-oranžové pozadí */
+            --box-orange: #F3793E; /* Oranžová horní plocha */
+            --box-pink: #D56471; /* Růžovo-červená boční plocha */
+            --box-grey: #E2E2E2; /* Světle šedá plocha */
+            --text-dark: #111111;
+        }
+
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #DCAF27;
-            color: #111;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
             line-height: 1.5;
             padding: 40px 20px;
             font-size: 16px;
@@ -29,7 +37,7 @@
             background-color: #ffffff;
             padding: 60px;
             box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.1);
-            border: 2px solid #111;
+            border: 2px solid var(--text-dark);
         }
 
         /* --- TYPOGRAFIE & HLAVIČKA --- */
@@ -71,24 +79,24 @@
         }
 
         .contact-info a {
-            color: #111;
+            color: var(--text-dark);
             text-decoration: none;
             border-bottom: 2px solid transparent;
             transition: border-bottom 0.2s;
         }
 
         .contact-info a:hover {
-            border-bottom: 2px solid #DCAF27;
+            border-bottom: 2px solid var(--box-orange);
         }
 
         /* Prostor pro fotografii (Swiss Style - přísný čtverec, černobílý filtr) */
         .profile-photo {
             width: 140px;
             height: 140px;
-            background-color: #E0E0D6; /* Barva boční strany kostky z referencí jako fallback */
-            border: 2px solid #111;
+            background-color: var(--box-grey);
+            border: 2px solid var(--text-dark);
             object-fit: cover;
-            filter: grayscale(100%); /* Typické pro tento styl, lze smazat */
+            filter: grayscale(100%);
             display: block;
         }
 
@@ -97,7 +105,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: -0.5px;
-            border-top: 4px solid #111;
+            border-top: 4px solid var(--text-dark);
             padding-top: 15px;
             margin-top: 50px;
             margin-bottom: 25px;
@@ -117,17 +125,17 @@
         /* --- VÝRAZNĚ VYSTOUPPLÉ PRACOVNÍ ZKUŠENOSTI --- */
         .experience-item {
             background-color: #fff;
-            border: 2px solid #111;
+            border: 2px solid var(--text-dark);
             margin-bottom: 20px;
             transition: all 0.2s ease-out;
             position: relative;
         }
 
         .experience-item:hover {
-            /* Izometrický stín z přiložených fotek (světle modrá + černá linka) */
-            transform: translate(-6px, -6px);
-            box-shadow: 8px 8px 0px #9CBAB3, 10px 10px 0px #111;
-            border-color: #111;
+            /* Dvojitý stín simulující 3D blok (růžová a oranžová) */
+            transform: translate(-8px, -8px);
+            box-shadow: 8px 8px 0px var(--box-pink), 16px 16px 0px var(--box-orange);
+            border-color: var(--text-dark);
         }
 
         details {
@@ -206,28 +214,29 @@
 
         .skill-tag {
             background: #fff;
-            color: #111;
+            color: var(--text-dark);
             padding: 8px 16px;
             font-size: 0.9em;
             font-weight: 700;
-            border: 2px solid #111;
+            border: 2px solid var(--text-dark);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: all 0.2s ease;
         }
 
         .skill-tag:hover {
-            background: #111;
+            background: var(--box-orange);
             color: #fff;
             transform: translateY(-3px);
-            box-shadow: 4px 4px 0px #DCAF27;
+            box-shadow: 4px 4px 0px var(--box-pink);
+            border-color: var(--box-orange);
         }
 
-        /* Soft skills - jiná barva při hoveru (cihlově oranžová z druhého obrázku) */
         .skill-tag.soft:hover {
-            background: #E56B42;
+            background: var(--box-pink);
             color: #fff;
-            box-shadow: 4px 4px 0px #111;
+            box-shadow: 4px 4px 0px var(--text-dark);
+            border-color: var(--box-pink);
         }
 
         /* Responzivita */
