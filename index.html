@@ -12,11 +12,10 @@
             padding: 0;
         }
 
-        /* Žluto-zelený gradient na pozadí (Curuba styl) */
+        /* Hořčicově žluté pozadí inspirované referenční grafikou */
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #FDEB71 0%, #73CA89 100%);
-            background-attachment: fixed;
+            background-color: #DCAF27;
             color: #111;
             line-height: 1.5;
             padding: 40px 20px;
@@ -29,13 +28,21 @@
             margin: 0 auto;
             background-color: #ffffff;
             padding: 60px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            border: 1px solid #111;
+            box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.1);
+            border: 2px solid #111;
         }
 
-        /* --- TYPOGRAFIE --- */
+        /* --- TYPOGRAFIE & HLAVIČKA --- */
         header {
             margin-bottom: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .header-text {
+            flex: 1;
         }
 
         h1 {
@@ -71,7 +78,18 @@
         }
 
         .contact-info a:hover {
-            border-bottom: 2px solid #73CA89;
+            border-bottom: 2px solid #DCAF27;
+        }
+
+        /* Prostor pro fotografii (Swiss Style - přísný čtverec, černobílý filtr) */
+        .profile-photo {
+            width: 140px;
+            height: 140px;
+            background-color: #E0E0D6; /* Barva boční strany kostky z referencí jako fallback */
+            border: 2px solid #111;
+            object-fit: cover;
+            filter: grayscale(100%); /* Typické pro tento styl, lze smazat */
+            display: block;
         }
 
         h2 {
@@ -106,9 +124,9 @@
         }
 
         .experience-item:hover {
-            /* Tvrdý 3D "brutalistický" stín */
-            transform: translate(-5px, -5px);
-            box-shadow: 8px 8px 0px rgba(115, 202, 137, 1), 9px 9px 0px #111;
+            /* Izometrický stín z přiložených fotek (světle modrá + černá linka) */
+            transform: translate(-6px, -6px);
+            box-shadow: 8px 8px 0px #9CBAB3, 10px 10px 0px #111;
             border-color: #111;
         }
 
@@ -199,19 +217,31 @@
         }
 
         .skill-tag:hover {
-            background: #FDEB71;
+            background: #111;
+            color: #fff;
             transform: translateY(-3px);
-            box-shadow: 3px 3px 0px #111;
+            box-shadow: 4px 4px 0px #DCAF27;
         }
 
+        /* Soft skills - jiná barva při hoveru (cihlově oranžová z druhého obrázku) */
         .skill-tag.soft:hover {
-            background: #73CA89;
+            background: #E56B42;
+            color: #fff;
+            box-shadow: 4px 4px 0px #111;
         }
 
         /* Responzivita */
         @media (max-width: 600px) {
             .container {
                 padding: 30px 20px;
+            }
+            header {
+                flex-direction: column-reverse;
+            }
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 20px;
             }
             h1 {
                 font-size: 2.5em;
@@ -223,13 +253,17 @@
 
 <div class="container">
     <header>
-        <h1>Pavel Krchňavý</h1>
-        <div class="subtitle">Digitální konzultant — SEO, weby, sociální sítě</div>
-        <div class="contact-info">
-            <span>📍 Brno-venkov, CZ</span>
-            <span>📧 <a href="mailto:krchnavy626@gmail.com">krchnavy626@gmail.com</a></span>
-            <span>💼 OSVČ</span>
+        <div class="header-text">
+            <h1>Pavel Krchňavý</h1>
+            <div class="subtitle">Digitální konzultant — SEO, weby, sociální sítě</div>
+            <div class="contact-info">
+                <span>📍 Brno-venkov, CZ</span>
+                <span>📧 <a href="mailto:krchnavy626@gmail.com">krchnavy626@gmail.com</a></span>
+                <span>💼 OSVČ</span>
+            </div>
         </div>
+        <!-- Prostor pro fotografii. Doplň do 'src' odkaz na svou fotku -->
+        <img src="tvoje-fotka.jpg" alt="Pavel Krchňavý" class="profile-photo">
     </header>
 
     <section>
@@ -240,12 +274,23 @@
     <section>
         <h2>Praxe</h2>
         
+        <!-- PROBÍHAJÍCÍ (Nyní) -->
         <div class="experience-item">
             <details>
                 <summary>E-shop admin — OSVČ</summary>
                 <div class="details-content">
                     <span class="date">2026 — nyní</span>
                     <p>SEO a GEO optimalizace e-shopu na Shoptetu: technické SEO, strukturovaná data, obsah kategorií, monitoring viditelnosti v AI vyhledávačích.</p>
+                </div>
+            </details>
+        </div>
+
+        <div class="experience-item">
+            <details>
+                <summary>Video maker — OSVČ</summary>
+                <div class="details-content">
+                    <span class="date">2025 — nyní</span>
+                    <p>Tvorba a střih krátkého video obsahu pro klienty jako doplněk ke správě sociálních sítí.</p>
                 </div>
             </details>
         </div>
@@ -262,20 +307,31 @@
 
         <div class="experience-item">
             <details>
-                <summary>Obchodní zástupce — Webařský prostor</summary>
+                <summary>Lektor ČLK Narval</summary>
                 <div class="details-content">
-                    <span class="date">2025 — 2026</span>
-                    <p>Prodej webařských služeb malým firmám, od prvního kontaktu po uzavření spolupráce.</p>
+                    <span class="date">2022 — nyní</span>
+                    <p>Aktivní lektor kurzu skautského vzdělávání ČLK Narval.</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- UKONČENÉ (Minulost) -->
+        <div class="experience-item">
+            <details>
+                <summary>Vedoucí skautského oddílu a tábora</summary>
+                <div class="details-content">
+                    <span class="date">2024 — 2026</span>
+                    <p>Vedení skautského oddílu. Jako hlavní vedoucí tábora odvedeno 6 dětských táborů, každý pro cca 60 dětí a 25 vedoucích.</p>
                 </div>
             </details>
         </div>
 
         <div class="experience-item">
             <details>
-                <summary>Video maker — OSVČ</summary>
+                <summary>Obchodní zástupce — Webařský prostor</summary>
                 <div class="details-content">
-                    <span class="date">2025 — nyní</span>
-                    <p>Tvorba a střih krátkého video obsahu pro klienty jako doplněk ke správě sociálních sítí.</p>
+                    <span class="date">2025 — 2026</span>
+                    <p>Prodej webařských služeb malým firmám, od prvního kontaktu po uzavření spolupráce.</p>
                 </div>
             </details>
         </div>
@@ -308,10 +364,6 @@
             <p>SEO a GEO pro e-shop s elektrickým nářadím — technické SEO, strukturovaná data, dashboard pro sledování viditelnosti v AI.</p>
         </div>
         <div class="project-item">
-            <h3>Curuba <span class="project-year">2025–26</span></h3>
-            <p>Vlastní konzultantská značka — marketingový web a vizuální identita.</p>
-        </div>
-        <div class="project-item">
             <h3>POS systém pro Charis <span class="project-year">2026</span></h3>
             <p>Interní prodejní systém - webová aplikace.</p>
         </div>
@@ -322,6 +374,14 @@
         <div class="project-item">
             <h3>Lightning POS <span class="project-year">2026</span></h3>
             <p>Platební systém na bázi Bitcoin Lightning Network s potvrzením plateb v reálném čase.</p>
+        </div>
+        <div class="project-item">
+            <h3>Brkvík <span class="project-year">2026</span></h3>
+            <p>Registrační web pro brněnskou skautskou akci, včetně generování QR plateb.</p>
+        </div>
+        <div class="project-item">
+            <h3>Curuba <span class="project-year">2025–26</span></h3>
+            <p>Vlastní konzultantská značka — marketingový web a vizuální identita.</p>
         </div>
     </section>
 
