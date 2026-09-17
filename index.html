@@ -3,113 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pavel Krchňavý - Životopis (Helvetica Style)</title>
+    <title>Pavel Krchňavý - Swiss Design Životopis</title>
     <style>
-        /* CSS Reset & Base */
+        /* CSS Reset and Base Styles */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            text-transform: lowercase; /* All lowercase for the poster feel */
         }
 
-        /* Žluto-zelený gradient na pozadí */
+        /* Color Palette and Base Typography */
+        :root {
+            --color-bg: #e0e4da; /* Pale warm grey background */
+            --color-orange: #f36421; /* Vibrant Swiss design orange */
+            --color-teal: #066e81; /* Deep cool teal */
+            --color-text-small: #333333;
+            --color-text-header: #ffffff;
+            --font-family-base: 'Inter', sans-serif; /* Embedding a classic sans-serif */
+            --font-family-bold: 'Arimo', sans-serif; /* For the massive headers */
+        }
+
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #FDEB71 0%, #73CA89 100%);
-            background-attachment: fixed;
-            color: #111;
-            line-height: 1.5;
-            padding: 40px 20px;
-            font-size: 16px;
+            font-family: var(--font-family-base);
+            background-color: var(--color-bg);
+            color: var(--color-text-small);
+            line-height: 1.4;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
         }
 
-        /* Hlavní kontejner - ostré hrany, gridový pocit */
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 60px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            border: 1px solid #111;
-        }
-
-        /* --- TYPOGRAFIE (Helvetica styl) --- */
-        header {
-            margin-bottom: 50px;
-        }
-
-        h1 {
-            font-size: 3.5em;
-            font-weight: 700;
-            letter-spacing: -1.5px;
-            line-height: 1;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .subtitle {
-            font-size: 1.5em;
-            font-weight: 500;
-            letter-spacing: -0.5px;
-            color: #555;
-            margin-bottom: 25px;
-        }
-
-        .contact-info {
+            width: 100%;
+            max-width: 900px;
             display: flex;
             flex-direction: column;
-            gap: 5px;
-            font-size: 1.1em;
-            font-weight: 500;
+            gap: 2rem;
         }
 
-        .contact-info a {
-            color: #111;
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: border-bottom 0.2s;
+        /* --- POSTER HEADER --- */
+        header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 0;
+            margin-bottom: 3rem;
         }
 
-        .contact-info a:hover {
-            border-bottom: 2px solid #73CA89;
-        }
-
-        h2 {
-            font-size: 2em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-            border-top: 4px solid #111; /* Silná strukturální linka */
-            padding-top: 15px;
-            margin-top: 50px;
-            margin-bottom: 25px;
-        }
-
-        h3 {
-            font-size: 1.2em;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        p {
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        /* --- VÝRAZNĚ VYSTOUPPLÉ PRACOVNÍ ZKUŠENOSTI --- */
-        .experience-item {
-            background-color: #fff;
-            border: 2px solid #111;
-            margin-bottom: 20px;
-            transition: all 0.2s ease-out;
+        header h1 {
+            grid-column: 1 / -1;
+            font-family: var(--font-family-bold);
+            font-size: clamp(6rem, 15vw, 12rem);
+            font-weight: 800;
+            line-height: 0.8;
+            margin: 0;
+            text-transform: lowercase;
             position: relative;
         }
 
+        header h1 span {
+            display: inline-block;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Name breaking (pa-vel krch-ňavý) with overlapping geometric blocks */
+        .pa-vel { color: var(--color-orange); }
+        .krch-navy { color: var(--color-teal); }
+
+        .pa { grid-area: pa; color: var(--color-orange); margin-right: -0.2rem; }
+        .vel { grid-area: vel; color: var(--color-teal); }
+        .krch { grid-area: krch; color: var(--color-teal); margin-right: -0.2rem; }
+        .navy { grid-area: navy; color: var(--color-orange); }
+
+        /* The overlapping effect using mix-blend-mode for geometric shapes */
+        header h1::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-areas:
+                "pa vel"
+                "krch navy";
+            mix-blend-mode: multiply; /* Color overlap effect */
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        header h1::after .block {
+            display: block;
+        }
+
+        .block-orange { background-color: var(--color-orange); opacity: 0.8; grid-area: pa; }
+        .block-teal { background-color: var(--color-teal); opacity: 0.8; grid-area: vel; }
+
+        /* Contact and description as small, wide text on the side */
+        .description-block {
+            grid-column: 1;
+            padding-right: 1rem;
+            font-size: 1.2rem;
+            line-height: 1.2;
+            color: var(--color-text-small);
+        }
+
+        .contact-block {
+            grid-column: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            align-self: flex-start;
+            padding-left: 1rem;
+            font-size: 1.1rem;
+            color: var(--color-text-small);
+        }
+
+        .contact-block a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* --- MAIN CONTENT SECTIONS --- */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        h2 {
+            font-family: var(--font-family-bold);
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: lowercase;
+            color: var(--color-teal);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1.1rem;
+            max-width: 60ch;
+        }
+
+        /* --- PRAXE (INTERACTIVE ACCORDION) WITH GEOMETRIC STYLE --- */
+        .praxe-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .experience-item {
+            background-color: var(--color-bg); /* Match bg */
+            border: 2px solid var(--color-text-small);
+            position: relative;
+            transition: transform 0.2s;
+        }
+
         .experience-item:hover {
-            /* Tvrdý 3D "brutalistický" stín typický pro moderní Swiss design */
-            transform: translate(-5px, -5px);
-            box-shadow: 8px 8px 0px rgba(115, 202, 137, 1), 9px 9px 0px #111;
-            border-color: #111;
+            transform: translate(-3px, -3px);
+            box-shadow: 6px 6px 0px var(--color-teal), 7px 7px 0px var(--color-text-small);
         }
 
         details {
@@ -117,254 +179,306 @@
         }
 
         summary {
-            padding: 20px;
-            font-size: 1.2em;
+            padding: 1rem;
+            font-size: 1.3rem;
             font-weight: 700;
             cursor: pointer;
             list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #fff;
+            background-color: #ffffff;
+            position: relative;
+            z-index: 2;
             transition: background-color 0.2s;
-        }
-
-        summary:hover {
-            background-color: #f9f9f9;
         }
 
         summary::-webkit-details-marker {
             display: none;
         }
 
-        /* Minimalistická šipka/plus */
+        /* Large lowercase accordion title */
+        summary:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Plus sign for the accordion */
         summary::after {
             content: '+';
-            font-size: 1.5em;
+            font-family: var(--font-family-bold);
+            font-size: 1.6rem;
             font-weight: 400;
             transition: transform 0.3s ease;
         }
 
         details[open] summary::after {
-            transform: rotate(45deg); /* Změní na X */
-        }
-
-        details[open] summary {
-            border-bottom: 1px solid #eee;
+            transform: rotate(45deg); /* Forms an X */
         }
 
         .details-content {
-            padding: 20px;
-            background-color: #fafafa;
+            padding: 1rem;
+            background-color: #ffffff;
+            border-top: 1px solid var(--color-bg);
+            animation: fadeIn 0.3s ease-in-out;
         }
 
         .date {
-            font-size: 0.9em;
-            font-weight: 700;
-            color: #777;
             display: block;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+            font-weight: 700;
+            color: #888888;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
             letter-spacing: 1px;
         }
 
-        /* --- PROJEKTY A VZDĚLÁNÍ --- */
-        .project-item {
-            margin-bottom: 30px;
-        }
-        
-        .project-year {
-            font-weight: 400;
-            color: #777;
-            margin-left: 10px;
+        /* --- PROJEKTY AND VZDĚLÁNÍ --- */
+        .project-list, .vzdělaní-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
-        /* --- DOVEDNOSTI (Štítky s ostrými hranami) --- */
+        .project-item {
+            border-bottom: 1px solid var(--color-text-small);
+            padding-bottom: 0.5rem;
+        }
+
+        .project-item h3 {
+            font-family: var(--font-family-bold);
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-transform: lowercase;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .project-year {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #888888;
+            text-transform: none;
+        }
+
+        /* --- DOVEDNOSTI (GEOMETRIC TAGS) --- */
         .skills-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
+            gap: 1rem;
         }
 
         .skill-tag {
-            background: #fff;
-            color: #111;
-            padding: 8px 16px;
-            font-size: 0.9em;
+            background: #ffffff;
+            color: var(--color-text-small);
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
             font-weight: 700;
-            border: 2px solid #111;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.2s ease;
+            text-transform: lowercase;
+            border: 2px solid var(--color-text-small);
+            transition: all 0.2s;
+            position: relative;
         }
 
         .skill-tag:hover {
-            background: #FDEB71;
-            transform: translateY(-3px);
-            box-shadow: 3px 3px 0px #111;
+            background: var(--color-teal);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0px var(--color-orange);
         }
 
+        /* Soft skills with a subtle background and orange accent on hover */
         .skill-tag.soft:hover {
-            background: #73CA89;
+            background: var(--color-orange);
+            color: #ffffff;
+            box-shadow: 4px 4px 0px var(--color-teal);
         }
 
-        /* Responzivita */
-        @media (max-width: 600px) {
-            .container {
-                padding: 30px 20px;
+        /* Fade-in for the accordion */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile adaptation */
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
             }
-            h1 {
-                font-size: 2.5em;
+            .container {
+                gap: 1.5rem;
+            }
+            header {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            header h1 {
+                font-size: clamp(4rem, 15vw, 6rem);
+            }
+            .description-block, .contact-block {
+                grid-column: 1;
+                padding: 0;
+            }
+            h2 {
+                font-size: 2.2rem;
             }
         }
     </style>
+    <!-- Embedding fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@700;800&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>Pavel Krchňavý</h1>
-        <div class="subtitle">Digitální konzultant — SEO, weby, sociální sítě</div>
-        <div class="contact-info">
-            <span>Brno-venkov, CZ</span>
-            <span><a href="mailto:krchnavy626@gmail.com">krchnavy626@gmail.com</a></span>
-            <span>OSVČ (vedlejší činnost)</span>
+        <h1>
+            <span class="pa">pa</span><span class="vel">vel</span>
+            <span class="krch">krch</span><span class="navy">ňavý</span>
+        </h1>
+        <div class="description-block">
+            <p>digitální konzultant — seo, weby, sociální sítě</p>
+        </div>
+        <div class="contact-block">
+            <span>📍 brno-venkov, cz</span>
+            <span>📧 <a href="mailto:krchnavy626@gmail.com">krchnavy626@gmail.com</a></span>
+            <span>💼 osvč (vedlejší činnost)</span>
         </div>
     </header>
 
-    <section>
-        <h2>Profil</h2>
-        <p>Freelance digitální konzultant zaměřený na SEO a GEO optimalizaci, tvorbu webů a správu sociálních sítí pro malé české firmy. Souběžně studuje ekonomii na Masarykově univerzitě.</p>
-    </section>
+    <main>
+        <section>
+            <h2>profil</h2>
+            <p>freelance digitální konzultant zaměřený na seo a geo optimalizaci, tvorbu webů a správu sociálních sítí pro malé české firmy. souběžně studuje ekonomii na masarykově univerzitě.</p>
+        </section>
 
-    <section>
-        <h2>Praxe</h2>
-        
-        <div class="experience-item">
-            <details>
-                <summary>E-shop admin — OSVČ</summary>
-                <div class="details-content">
-                    <span class="date">01/2026 — nyní</span>
-                    <p>SEO a GEO optimalizace e-shopu na Shoptetu: technické SEO, strukturovaná data, obsah kategorií, monitoring viditelnosti v AI vyhledávačích.</p>
+        <section>
+            <h2>praxe</h2>
+            <div class="praxe-container">
+                <div class="experience-item">
+                    <details>
+                        <summary>e-shop admin — osvč</summary>
+                        <div class="details-content">
+                            <span class="date">01/2026 — nyní</span>
+                            <p>seo a geo optimalizace e-shopu na shoptetu: technické seo, strukturovaná data, obsah kategorií, monitoring viditelnosti v ai vyhledávačích.</p>
+                        </div>
+                    </details>
                 </div>
-            </details>
-        </div>
-
-        <div class="experience-item">
-            <details>
-                <summary>Vedoucí dobrovolnického týmu — Konference Charis</summary>
-                <div class="details-content">
-                    <span class="date">04/2023 — nyní</span>
-                    <p>Vedení dobrovolnického týmu na velké brněnské konferenci, organizace směn a řešení provozních problémů.</p>
+                <div class="experience-item">
+                    <details>
+                        <summary>vedoucí dobrovolnického týmu — konference charis</summary>
+                        <div class="details-content">
+                            <span class="date">04/2023 — nyní</span>
+                            <p>vedení dobrovolnického týmu na velké brněnské konferenci, organizace směn a řešení provozních problémů.</p>
+                        </div>
+                    </details>
                 </div>
-            </details>
-        </div>
-
-        <div class="experience-item">
-            <details>
-                <summary>Obchodní zástupce — Webařský prostor</summary>
-                <div class="details-content">
-                    <span class="date">11/2025 — 04/2026</span>
-                    <p>Prodej webařských služeb malým firmám, od prvního kontaktu po uzavření spolupráce.</p>
+                <div class="experience-item">
+                    <details>
+                        <summary>obchodní zástupce — webařský prostor</summary>
+                        <div class="details-content">
+                            <span class="date">11/2025 — 04/2026</span>
+                            <p>prodej webařských služeb malým firmám, od prvního kontaktu po uzavření spolupráce.</p>
+                        </div>
+                    </details>
                 </div>
-            </details>
-        </div>
-
-        <div class="experience-item">
-            <details>
-                <summary>Video maker — OSVČ</summary>
-                <div class="details-content">
-                    <span class="date">02/2026 — nyní</span>
-                    <p>Tvorba a střih krátkého video obsahu pro klienty jako doplněk ke správě sociálních sítí.</p>
+                <div class="experience-item">
+                    <details>
+                        <summary>video maker — osvč</summary>
+                        <div class="details-content">
+                            <span class="date">02/2026 — nyní</span>
+                            <p>tvorba a střih krátkého video obsahu pro klienty jako doplněk ke správě sociálních sítí.</p>
+                        </div>
+                    </details>
                 </div>
-            </details>
-        </div>
-
-        <div class="experience-item">
-            <details>
-                <summary>Turistický průvodce — OSVČ, Vídeň</summary>
-                <div class="details-content">
-                    <span class="date">09/2025 — 10/2025</span>
-                    <p>Provázení turistických skupin, práce s cizojazyčným publikem.</p>
+                <div class="experience-item">
+                    <details>
+                        <summary>turistický průvodce — osvč, vídeň</summary>
+                        <div class="details-content">
+                            <span class="date">09/2025 — 10/2025</span>
+                            <p>provázení turistických skupin, práce s cizojazyčným publikem.</p>
+                        </div>
+                    </details>
                 </div>
-            </details>
-        </div>
-
-        <div class="experience-item">
-            <details>
-                <summary>Kurýr — Wolt, Brno</summary>
-                <div class="details-content">
-                    <span class="date">11/2021 — 09/2025</span>
-                    <p>Brigáda souběžně se studiem.</p>
+                <div class="experience-item">
+                    <details>
+                        <summary>kurýr — wolt, brno</summary>
+                        <div class="details-content">
+                            <span class="date">11/2021 — 09/2025</span>
+                            <p>brigáda souběžně se studiem.</p>
+                        </div>
+                    </details>
                 </div>
-            </details>
-        </div>
-    </section>
+            </div>
+        </section>
 
-    <section>
-        <h2>Vybrané projekty</h2>
-        <div class="project-item">
-            <h3>Wikitools.cz <span class="project-year">2026</span></h3>
-            <p>SEO a GEO pro e-shop s elektrickým nářadím — technické SEO, strukturovaná data, dashboard pro sledování viditelnosti v AI.</p>
-        </div>
-        <div class="project-item">
-            <h3>Curuba <span class="project-year">2025–26</span></h3>
-            <p>Vlastní konzultantská značka — marketingový web a vizuální identita.</p>
-        </div>
-        <div class="project-item">
-            <h3>POS systém pro Charis <span class="project-year">2026</span></h3>
-            <p>Interní prodejní aplikace s PIN přihlašováním pro 13 zaměstnanců.</p>
-        </div>
-        <div class="project-item">
-            <h3>Brkvík <span class="project-year">2026</span></h3>
-            <p>Registrační web pro brněnskou skautskou akci, včetně generování QR plateb.</p>
-        </div>
-        <div class="project-item">
-            <h3>Lightning POS <span class="project-year">2026</span></h3>
-            <p>Platební systém na bázi Bitcoin Lightning Network s potvrzením plateb v reálném čase.</p>
-        </div>
-    </section>
+        <section>
+            <h2>vybrané projekty</h2>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>wikitools.cz <span class="project-year">2026</span></h3>
+                    <p>seo a geo pro e-shop s elektrickým nářadím — technické seo, strukturovaná data, dashboard pro sledování viditelnosti v ai.</p>
+                </div>
+                <div class="project-item">
+                    <h3>curuba <span class="project-year">2025–26</span></h3>
+                    <p>vlastní konzultantská značka — marketingový web a vizuální identita.</p>
+                </div>
+                <div class="project-item">
+                    <h3>pos systém pro charis <span class="project-year">2026</span></h3>
+                    <p>interní prodejní aplikace s pin přihlašováním pro 13 zaměstnanců.</p>
+                </div>
+                <div class="project-item">
+                    <h3>brkvík <span class="project-year">2026</span></h3>
+                    <p>registrační web pro brněnskou skautskou akci, včetně generování qr plateb.</p>
+                </div>
+                <div class="project-item">
+                    <h3>lightning pos <span class="project-year">2026</span></h3>
+                    <p>platební systém na bázi bitcoin lightning network s potvrzením plateb v reálném čase.</p>
+                </div>
+            </div>
+        </section>
 
-    <section>
-        <h2>Dovednosti</h2>
-        <h3>Hard skills</h3>
-        <div class="skills-container">
-            <span class="skill-tag">SEO & GEO</span>
-            <span class="skill-tag">Strukturovaná data</span>
-            <span class="skill-tag">Tvorba webů</span>
-            <span class="skill-tag">Shoptet</span>
-            <span class="skill-tag">Google Apps Script</span>
-            <span class="skill-tag">Next.js / React</span>
-            <span class="skill-tag">Video a střih</span>
-            <span class="skill-tag">Lightning Network</span>
-        </div>
-        
-        <h3>Soft skills</h3>
-        <div class="skills-container">
-            <span class="skill-tag soft">Vedení týmu</span>
-            <span class="skill-tag soft">Obchodní jednání</span>
-            <span class="skill-tag soft">Efektivní komunikace</span>
-            <span class="skill-tag soft">Organizační schopnosti</span>
-            <span class="skill-tag soft">Řešení problémů</span>
-            <span class="skill-tag soft">Samostatnost</span>
-            <span class="skill-tag soft">Ochota učit se</span>
-            <span class="skill-tag soft">Flexibilita</span>
-            <span class="skill-tag soft">Spolehlivost</span>
-            <span class="skill-tag soft">Práce pod tlakem</span>
-            <span class="skill-tag soft">Cizí jazyky</span>
-        </div>
-    </section>
+        <section>
+            <h2>dovednosti</h2>
+            <p>hard skills</p>
+            <div class="skills-container">
+                <span class="skill-tag">seo & geo optimalizace</span>
+                <span class="skill-tag">strukturovaná data</span>
+                <span class="skill-tag">tvorba webů</span>
+                <span class="skill-tag">shoptet</span>
+                <span class="skill-tag">google apps script</span>
+                <span class="skill-tag">next.js / react</span>
+                <span class="skill-tag">video a střih</span>
+                <span class="skill-tag">lightning network</span>
+            </div>
+            <p style="margin-top: 1rem;">soft skills</p>
+            <div class="skills-container">
+                <span class="skill-tag soft">vedení týmu</span>
+                <span class="skill-tag soft">obchodní jednání</span>
+                <span class="skill-tag soft">efektivní komunikace</span>
+                <span class="skill-tag soft">organizační schopnosti</span>
+                <span class="skill-tag soft">samostatnost</span>
+                <span class="skill-tag soft">řešení problému</span>
+                <span class="skill-tag soft">ochota učit se</span>
+                <span class="skill-tag soft">flexibilita</span>
+                <span class="skill-tag soft">spolehlivost</span>
+                <span class="skill-tag soft">práce pod tlakem</span>
+                <span class="skill-tag soft">cizí jazyky</span>
+            </div>
+        </section>
 
-    <section>
-        <h2>Vzdělání</h2>
-        <div class="project-item">
-            <h3>Masarykova univerzita, Brno — ekonomie</h3>
-            <span class="date">2026 — nyní</span>
-            <p>Mikroekonomie, Základy financí, Matematika pro ekonomy, Základy práva.</p>
-        </div>
-    </section>
-
+        <section>
+            <h2>vzdělání</h2>
+            <div class="vzdělaní-list">
+                <div class="project-item">
+                    <h3>masarykova univerzita, brno — ekonomie</h3>
+                    <span class="date">2026 — nyní</span>
+                    <p>mikroekonomie, základy financí, matematika pro ekonomy, základy práva.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 </div>
 
 </body>
