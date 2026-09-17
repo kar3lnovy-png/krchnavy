@@ -16,8 +16,8 @@
         :root {
             --bg-color: #BFBABE; /* Tlumená béžovo-šedá (pozadí) */
             --box-brown: #FBAE17; /* Tmavá taupe/hnědo-šedá (horní plocha) */
-            --box-yellow: #0095A3; /* Hořčicově žlutá (pravá plocha) */
-            --box-green: #FE9F97; /* Olivově zelená (levá plocha) */
+            --box-yellow: #558A86; /* Hořčicově žlutá (pravá plocha) */
+            --box-green: #A63E14; /* Olivově zelená (levá plocha) */
             --text-dark: #1A1615; /* Téměř černá s velmi lehkým teplým tónem pro lepší čitelnost */
         }
 
@@ -39,7 +39,7 @@ body::after {
     height: 100vh;
     pointer-events: none; /* Propustí klikání na text a tlačítka pod texturou */
     z-index: 9999;
-    opacity: 0.35; /* Intenzita zrnitosti - čím vyšší číslo, tím silnější efekt */
+    opacity: 0.09; /* Intenzita zrnitosti - čím vyšší číslo, tím silnější efekt */
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
         /* Hlavní kontejner - ostré hrany, čistý design */
