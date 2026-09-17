@@ -3,205 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pavel Krchňavý - Životopis</title>
+    <title>Pavel Krchňavý - Životopis (Helvetica Style)</title>
     <style>
-        /* Celkové nastavení stránky a prolínající se modro-růžové pozadí */
-        body {
+        /* CSS Reset & Base */
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 40px 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #00c6ff 0%, #ff758c 100%);
-            background-attachment: fixed;
-            color: #333;
-            line-height: 1.6;
+            padding: 0;
         }
 
-        /* Hlavní kontejner životopisu - bílá karta pro čitelnost */
+        /* Žluto-zelený gradient na pozadí */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #FDEB71 0%, #73CA89 100%);
+            background-attachment: fixed;
+            color: #111;
+            line-height: 1.5;
+            padding: 40px 20px;
+            font-size: 16px;
+        }
+
+        /* Hlavní kontejner - ostré hrany, gridový pocit */
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            background-color: #ffffff;
+            padding: 60px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid #111;
         }
 
+        /* --- TYPOGRAFIE (Helvetica styl) --- */
         header {
-            text-align: center;
-            border-bottom: 3px solid #ff758c;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
         }
 
         h1 {
-            color: #0072ff;
-            font-size: 2.5em;
-            margin: 0 0 10px 0;
-        }
-
-        h2 {
-            color: #ff477e;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 30px;
-        }
-
-        h3 {
-            color: #0072ff;
-            margin-bottom: 5px;
+            font-size: 3.5em;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
         .subtitle {
-            font-size: 1.2em;
+            font-size: 1.5em;
+            font-weight: 500;
+            letter-spacing: -0.5px;
             color: #555;
-            font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
 
         .contact-info {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 1.1em;
+            font-weight: 500;
         }
 
         .contact-info a {
-            color: #0072ff;
+            color: #111;
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.2s;
         }
 
         .contact-info a:hover {
-            color: #ff477e;
+            border-bottom: 2px solid #73CA89;
+        }
+
+        h2 {
+            font-size: 2em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            border-top: 4px solid #111; /* Silná strukturální linka */
+            padding-top: 15px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #333;
         }
 
         /* --- VÝRAZNĚ VYSTOUPPLÉ PRACOVNÍ ZKUŠENOSTI --- */
         .experience-item {
-            background-color: #ffffff;
-            border-radius: 12px;
+            background-color: #fff;
+            border: 2px solid #111;
             margin-bottom: 20px;
-            /* Silný stín pro vystouplý 3D efekt */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0,0,0,0.10);
-            border-left: 6px solid #0072ff;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease-out;
+            position: relative;
         }
 
         .experience-item:hover {
-            /* Interaktivní nadzvednutí po najetí myší */
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0,0,0,0.15);
-            border-left-color: #ff477e;
+            /* Tvrdý 3D "brutalistický" stín typický pro moderní Swiss design */
+            transform: translate(-5px, -5px);
+            box-shadow: 8px 8px 0px rgba(115, 202, 137, 1), 9px 9px 0px #111;
+            border-color: #111;
         }
 
-        /* Rozbalovací prvky (Accordion) */
         details {
             width: 100%;
         }
 
         summary {
             padding: 20px;
-            font-size: 1.1em;
-            font-weight: bold;
+            font-size: 1.2em;
+            font-weight: 700;
             cursor: pointer;
-            list-style: none; /* Skrytí výchozí šipky v prohlížečích */
+            list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: #222;
+            background-color: #fff;
+            transition: background-color 0.2s;
+        }
+
+        summary:hover {
+            background-color: #f9f9f9;
         }
 
         summary::-webkit-details-marker {
-            display: none; /* Skrytí šipky v Safari/Chrome */
+            display: none;
         }
 
-        /* Vlastní ikona pro rozbalení (+) a sbalení (x) */
+        /* Minimalistická šipka/plus */
         summary::after {
             content: '+';
             font-size: 1.5em;
-            color: #0072ff;
+            font-weight: 400;
             transition: transform 0.3s ease;
         }
 
         details[open] summary::after {
-            content: '+';
-            transform: rotate(45deg); /* Změní + na křížek x */
-            color: #ff477e;
+            transform: rotate(45deg); /* Změní na X */
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid #eee;
         }
 
         .details-content {
-            padding: 0 20px 20px 20px;
-            color: #444;
-            animation: fadeIn 0.4s ease-in-out;
+            padding: 20px;
+            background-color: #fafafa;
         }
 
         .date {
             font-size: 0.9em;
-            color: #888;
-            font-style: italic;
+            font-weight: 700;
+            color: #777;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Ostatní sekce (Projekty, dovednosti atd.) */
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
+        /* --- PROJEKTY A VZDĚLÁNÍ --- */
         .project-item {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         
         .project-year {
-            font-weight: bold;
-            color: #ff477e;
+            font-weight: 400;
+            color: #777;
+            margin-left: 10px;
         }
 
+        /* --- DOVEDNOSTI (Štítky s ostrými hranami) --- */
         .skills-container {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 10px;
+            margin-bottom: 30px;
         }
 
         .skill-tag {
-            background: rgba(0, 114, 255, 0.1);
-            color: #0072ff;
-            padding: 8px 15px;
-            border-radius: 20px;
+            background: #fff;
+            color: #111;
+            padding: 8px 16px;
             font-size: 0.9em;
-            font-weight: bold;
-            border: 1px solid rgba(0, 114, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag.soft {
-            background: rgba(255, 71, 126, 0.1);
-            color: #ff477e;
-            border: 1px solid rgba(255, 71, 126, 0.2);
+            font-weight: 700;
+            border: 2px solid #111;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
         }
 
         .skill-tag:hover {
-            transform: scale(1.05);
-            background: #0072ff;
-            color: #fff;
+            background: #FDEB71;
+            transform: translateY(-3px);
+            box-shadow: 3px 3px 0px #111;
         }
 
         .skill-tag.soft:hover {
-            background: #ff477e;
-            color: #fff;
+            background: #73CA89;
         }
 
+        /* Responzivita */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -211,9 +227,9 @@
         <h1>Pavel Krchňavý</h1>
         <div class="subtitle">Digitální konzultant — SEO, weby, sociální sítě</div>
         <div class="contact-info">
-            <span>📍 Brno-venkov, CZ</span>
-            <span>📧 <a href="mailto:krchnavy626@gmail.com">krchnavy626@gmail.com</a></span>
-            <span>💼 OSVČ (vedlejší činnost)</span>
+            <span>Brno-venkov, CZ</span>
+            <span><a href="mailto:krchnavy626@gmail.com">krchnavy626@gmail.com</a></span>
+            <span>OSVČ (vedlejší činnost)</span>
         </div>
     </header>
 
@@ -289,23 +305,23 @@
     <section>
         <h2>Vybrané projekty</h2>
         <div class="project-item">
-            <h3>Wikitools.cz <span class="project-year">(2026)</span></h3>
+            <h3>Wikitools.cz <span class="project-year">2026</span></h3>
             <p>SEO a GEO pro e-shop s elektrickým nářadím — technické SEO, strukturovaná data, dashboard pro sledování viditelnosti v AI.</p>
         </div>
         <div class="project-item">
-            <h3>Curuba <span class="project-year">(2025–26)</span></h3>
+            <h3>Curuba <span class="project-year">2025–26</span></h3>
             <p>Vlastní konzultantská značka — marketingový web a vizuální identita.</p>
         </div>
         <div class="project-item">
-            <h3>POS systém pro Charis <span class="project-year">(2026)</span></h3>
+            <h3>POS systém pro Charis <span class="project-year">2026</span></h3>
             <p>Interní prodejní aplikace s PIN přihlašováním pro 13 zaměstnanců.</p>
         </div>
         <div class="project-item">
-            <h3>Brkvík <span class="project-year">(2026)</span></h3>
+            <h3>Brkvík <span class="project-year">2026</span></h3>
             <p>Registrační web pro brněnskou skautskou akci, včetně generování QR plateb.</p>
         </div>
         <div class="project-item">
-            <h3>Lightning POS <span class="project-year">(2026)</span></h3>
+            <h3>Lightning POS <span class="project-year">2026</span></h3>
             <p>Platební systém na bázi Bitcoin Lightning Network s potvrzením plateb v reálném čase.</p>
         </div>
     </section>
@@ -314,7 +330,7 @@
         <h2>Dovednosti</h2>
         <h3>Hard skills</h3>
         <div class="skills-container">
-            <span class="skill-tag">SEO & GEO optimalizace</span>
+            <span class="skill-tag">SEO & GEO</span>
             <span class="skill-tag">Strukturovaná data</span>
             <span class="skill-tag">Tvorba webů</span>
             <span class="skill-tag">Shoptet</span>
@@ -324,12 +340,16 @@
             <span class="skill-tag">Lightning Network</span>
         </div>
         
-        <h3 style="margin-top: 20px;">Soft skills</h3>
+        <h3>Soft skills</h3>
         <div class="skills-container">
             <span class="skill-tag soft">Vedení týmu</span>
             <span class="skill-tag soft">Obchodní jednání</span>
-            <span class="skill-tag soft">Komunikace s klienty</span>
+            <span class="skill-tag soft">Efektivní komunikace</span>
+            <span class="skill-tag soft">Organizační schopnosti</span>
+            <span class="skill-tag soft">Řešení problémů</span>
             <span class="skill-tag soft">Samostatnost</span>
+            <span class="skill-tag soft">Ochota učit se</span>
+            <span class="skill-tag soft">Flexibilita</span>
             <span class="skill-tag soft">Spolehlivost</span>
             <span class="skill-tag soft">Práce pod tlakem</span>
             <span class="skill-tag soft">Cizí jazyky</span>
@@ -341,7 +361,7 @@
         <div class="project-item">
             <h3>Masarykova univerzita, Brno — ekonomie</h3>
             <span class="date">2026 — nyní</span>
-            <p><strong>Předměty:</strong> Mikroekonomie, Základy financí, Matematika pro ekonomy, Základy práva.</p>
+            <p>Mikroekonomie, Základy financí, Matematika pro ekonomy, Základy práva.</p>
         </div>
     </section>
 
