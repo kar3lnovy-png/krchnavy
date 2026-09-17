@@ -12,13 +12,13 @@
             padding: 0;
         }
 
-        /* Barvy z referenčního obrázku "Screenshot 2026-09-17 at 15.27.09_2.jpg" */
+        /* Barvy z referenčního obrázku "Screenshot 2026-09-17 at 15.41.25.jpg" */
         :root {
-            --bg-color: #F1A226; /* Žluto-oranžové pozadí */
-            --box-orange: #F3793E; /* Oranžová horní plocha */
-            --box-pink: #D56471; /* Růžovo-červená boční plocha */
-            --box-grey: #E2E2E2; /* Světle šedá plocha */
-            --text-dark: #111111;
+            --bg-color: #C8BDB6; /* Tlumená béžovo-šedá (pozadí) */
+            --box-brown: #5C4D49; /* Tmavá taupe/hnědo-šedá (horní plocha) */
+            --box-yellow: #DCB02A; /* Hořčicově žlutá (pravá plocha) */
+            --box-green: #738A3F; /* Olivově zelená (levá plocha) */
+            --text-dark: #1A1615; /* Téměř černá s velmi lehkým teplým tónem pro lepší čitelnost */
         }
 
         body {
@@ -36,7 +36,7 @@
             margin: 0 auto;
             background-color: #ffffff;
             padding: 60px;
-            box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.08);
             border: 2px solid var(--text-dark);
         }
 
@@ -86,14 +86,14 @@
         }
 
         .contact-info a:hover {
-            border-bottom: 2px solid var(--box-orange);
+            border-bottom: 2px solid var(--box-green);
         }
 
         /* Prostor pro fotografii (Swiss Style - přísný čtverec, černobílý filtr) */
         .profile-photo {
             width: 140px;
             height: 140px;
-            background-color: var(--box-grey);
+            background-color: var(--box-brown);
             border: 2px solid var(--text-dark);
             object-fit: cover;
             filter: grayscale(100%);
@@ -132,9 +132,9 @@
         }
 
         .experience-item:hover {
-            /* Dvojitý stín simulující 3D blok (růžová a oranžová) */
+            /* Dvojitý stín simulující 3D blok (zelená a žlutá) */
             transform: translate(-8px, -8px);
-            box-shadow: 8px 8px 0px var(--box-pink), 16px 16px 0px var(--box-orange);
+            box-shadow: 8px 8px 0px var(--box-green), 16px 16px 0px var(--box-yellow);
             border-color: var(--text-dark);
         }
 
@@ -225,18 +225,18 @@
         }
 
         .skill-tag:hover {
-            background: var(--box-orange);
+            background: var(--box-brown);
             color: #fff;
             transform: translateY(-3px);
-            box-shadow: 4px 4px 0px var(--box-pink);
-            border-color: var(--box-orange);
+            box-shadow: 4px 4px 0px var(--box-yellow);
+            border-color: var(--box-brown);
         }
 
         .skill-tag.soft:hover {
-            background: var(--box-pink);
+            background: var(--box-green);
             color: #fff;
             box-shadow: 4px 4px 0px var(--text-dark);
-            border-color: var(--box-pink);
+            border-color: var(--box-green);
         }
 
         /* Responzivita */
