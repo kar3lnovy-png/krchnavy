@@ -29,18 +29,20 @@
             padding: 40px 20px;
             font-size: 16px;
         }
-/* Tvorba textury zrnitosti (noise) pouze na pozadí (pod textem a bílou kartou) */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; /* Zásadní změna: přesune šum úplně dozadu pod bílou čtecí plochu */
-    opacity: 0.14; /* Výrazně jemnější hodnota (původně 0.35) */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
+
+        /* Tvorba textury zrnitosti (noise) pouze na pozadí (pod textem a bílou kartou) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; 
+            opacity: 0.14; 
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
         /* Hlavní kontejner - ostré hrany, čistý design */
         .container {
             max-width: 800px;
@@ -49,6 +51,40 @@ body::before {
             padding: 60px;
             box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.08);
             border: 2px solid var(--text-dark);
+        }
+
+        /* --- PŘEPÍNAČ JAZYKŮ --- */
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .lang-switch button {
+            background-color: transparent;
+            border: 2px solid var(--text-dark);
+            color: var(--text-dark);
+            font-family: inherit;
+            font-size: 0.9em;
+            font-weight: 700;
+            padding: 5px 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .lang-switch button.active {
+            background-color: var(--text-dark);
+            color: #fff;
+        }
+
+        .lang-switch button:not(.active):hover {
+            background-color: var(--box-brown);
+            border-color: var(--box-brown);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 2px 2px 0px var(--box-yellow);
         }
 
         /* --- TYPOGRAFIE & HLAVIČKA --- */
@@ -100,7 +136,7 @@ body::before {
             border-bottom: 2px solid var(--box-green);
         }
 
-        /* Prostor pro fotografii (Swiss Style - přísný čtverec, černobílý filtr) */
+        /* Prostor pro fotografii */
         .profile-photo {
             width: 140px;
             height: 140px;
@@ -143,7 +179,6 @@ body::before {
         }
 
         .experience-item:hover {
-            /* Dvojitý stín simulující 3D blok (zelená a žlutá) */
             transform: translate(-8px, -8px);
             box-shadow: 8px 8px 0px var(--box-green), 16px 16px 0px var(--box-yellow);
             border-color: var(--text-dark);
@@ -272,173 +307,371 @@ body::before {
 <body>
 
 <div class="container">
-    <header>
-        <div class="header-text">
-            <h1>Pavel Krchňavý</h1>
-            <div class="subtitle">digitální projekty & projektový management</div>
-            <div class="contact-info">
-                <span>📍 Brno, CZ</span>
-                <span>📧 <a href="mailto:pavel@krchnavy.info">pavel@krchnavy.info</a></span>
-                <span>💼 OSVČ</span>
+    
+    <!-- PŘEPÍNAČ JAZYKŮ -->
+    <div class="lang-switch">
+        <button id="btn-cs" class="active" onclick="switchLang('cs')">CZ</button>
+        <button id="btn-en" onclick="switchLang('en')">EN</button>
+    </div>
+
+    <!-- ČESKÁ VERZE -->
+    <div id="content-cs">
+        <header>
+            <div class="header-text">
+                <h1>Pavel Krchňavý</h1>
+                <div class="subtitle">digitální projekty & projektový management</div>
+                <div class="contact-info">
+                    <span>📍 Brno, CZ</span>
+                    <span>📧 <a href="mailto:pavel@krchnavy.info">pavel@krchnavy.info</a></span>
+                    <span>💼 OSVČ</span>
+                </div>
             </div>
-        </div>
-        <!-- Prostor pro fotografii. Doplň do 'src' odkaz na svou fotku -->
-        <img src="square-image (1).jpg" alt="Pavel Krchňavý" class="profile-photo">
-    </header>
+            <img src="square-image (1).jpg" alt="Pavel Krchňavý" class="profile-photo">
+        </header>
 
-    <section>
-        <h2>Profil</h2>
-        <p>Freelance digitální konzultant zaměřený na tvorbu a správu webů a správu sociálních sítí pro české firmy. Souběžně studuje podnikovou ekonomiku a management na Masarykově univerzitě.</p>
-    </section>
+        <section>
+            <h2>Profil</h2>
+            <p>Freelance digitální konzultant zaměřený na tvorbu a správu webů a správu sociálních sítí pro české firmy. Souběžně studuje podnikovou ekonomiku a management na Masarykově univerzitě.</p>
+        </section>
 
-    <section>
-        <h2>Praxe</h2>
-        
-        <!-- PROBÍHAJÍCÍ (Nyní) -->
-        <div class="experience-item">
-            <details>
-                <summary>E-shop admin — OSVČ</summary>
-                <div class="details-content">
-                    <span class="date">2026 — nyní</span>
-                    <p>SEO a GEO optimalizace e-shopu na Shoptetu: technické SEO, strukturovaná data, obsah kategorií, monitoring viditelnosti v AI vyhledávačích. Import produktů a celková správa webu.</p>
+        <section>
+            <h2>Praxe</h2>
+            
+            <div class="experience-item">
+                <details>
+                    <summary>E-shop admin — OSVČ</summary>
+                    <div class="details-content">
+                        <span class="date">2026 — nyní</span>
+                        <p>SEO a GEO optimalizace e-shopu na Shoptetu: technické SEO, strukturovaná data, obsah kategorií, monitoring viditelnosti v AI vyhledávačích. Import produktů a celková správa webu.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="experience-item">
+                <details>
+                    <summary>Video maker — OSVČ</summary>
+                    <div class="details-content">
+                        <span class="date">2025 — nyní</span>
+                        <p>Tvorba a střih krátkého video obsahu pro klienty jako doplněk ke správě sociálních sítí.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="experience-item">
+                <details>
+                    <summary>Vedoucí dobrovolnického týmu — Konference Charis</summary>
+                    <div class="details-content">
+                        <span class="date">2023 — nyní</span>
+                        <p>Vedení dobrovolnického týmu na velké brněnské konferenci. Organizace stovky dobrovolníků.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="experience-item">
+                <details>
+                    <summary>Lektor ČLK Narval</summary>
+                    <div class="details-content">
+                        <span class="date">2022 — nyní</span>
+                        <p>Aktivní lektor kurzu skautského vzdělávání ČLK Narval.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="experience-item">
+                <details>
+                    <summary>Vedoucí skautského oddílu a tábora</summary>
+                    <div class="details-content">
+                        <span class="date">2024 — 2026</span>
+                        <p>Vedení skautského oddílu. Jako hlavní vedoucí tábora odvedeno 6 dětských táborů, každý pro cca 60 dětí a 25 vedoucích.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="experience-item">
+                <details>
+                    <summary>Obchodní zástupce — Webařský prostor</summary>
+                    <div class="details-content">
+                        <span class="date">2025 — 2026</span>
+                        <p>Prodej webařských služeb malým firmám, od prvního kontaktu po uzavření spolupráce.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="experience-item">
+                <details>
+                    <summary>Turistický průvodce — OSVČ, Vídeň</summary>
+                    <div class="details-content">
+                        <span class="date">2025</span>
+                        <p>Provázení turistických skupin, práce s cizojazyčným publikem.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="experience-item">
+                <details>
+                    <summary>Kurýr — Wolt, Brno</summary>
+                    <div class="details-content">
+                        <span class="date">2021 — 2025</span>
+                        <p>Brigáda souběžně se studiem.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section>
+            <h2>Vybrané projekty</h2>
+            <div class="project-item">
+                <h3>Wikitools.cz <span class="project-year">2026</span></h3>
+                <p>SEO a GEO pro e-shop s elektrickým nářadím — technické SEO, strukturovaná data, dashboard pro sledování viditelnosti v AI.</p>
+            </div>
+            <div class="project-item">
+                <h3>POS systém pro Charis <span class="project-year">2026</span></h3>
+                <p>Interní prodejní systém - webová aplikace.</p>
+            </div>
+            <div class="project-item">
+                <h3>Dyna optik a optika Fénix <span class="project-year">2026</span></h3>
+                <p>Videotvorba pro prezentaci služeb.</p>
+            </div>
+            <div class="project-item">
+                <h3>Lightning POS <span class="project-year">2026</span></h3>
+                <p>Platební systém na bázi Bitcoin Lightning Network s potvrzením plateb v reálném čase.</p>
+            </div>
+            <div class="project-item">
+                <h3>Curuba <span class="project-year">2025–26</span></h3>
+                <p>Vlastní konzultantská značka — marketingový web a vizuální identita.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Dovednosti</h2>
+            <h3>Hard skills</h3>
+            <div class="skills-container">
+                <span class="skill-tag">SEO & GEO optimalizace</span>
+                <span class="skill-tag">Základní IT znalost</span>
+                <span class="skill-tag">Tvorba webů</span>
+                <span class="skill-tag">Shoptet</span>
+                <span class="skill-tag">Znalost nástrojů Google a Microsoft</span>
+                <span class="skill-tag">Pokročilá práce s AI</span>
+                <span class="skill-tag">Video a střih</span>
+                <span class="skill-tag">Lightning Network</span>
+            </div>
+            
+            <h3 style="margin-top: 10px;">Soft skills</h3>
+            <div class="skills-container">
+                <span class="skill-tag soft">Vedení týmu</span>
+                <span class="skill-tag soft">Efektivní komunikace</span>
+                <span class="skill-tag soft">Organizační schopnosti</span>
+                <span class="skill-tag soft">Samostatnost</span>
+                <span class="skill-tag soft">Řešení problémů</span>
+                <span class="skill-tag soft">Ochota učit se</span>
+                <span class="skill-tag soft">Flexibilita</span>
+                <span class="skill-tag soft">Spolehlivost</span>
+                <span class="skill-tag soft">Práce pod tlakem</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Vzdělání</h2>
+            <div class="project-item">
+                <h3>Masarykova univerzita, Brno — podniková ekonomika a management</h3>
+                <span class="date">2026 — nyní</span>
+                <p>Bakalářské studium.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- ANGLICKÁ VERZE (Skrytá ve výchozím stavu) -->
+    <div id="content-en" style="display: none;">
+        <header>
+            <div class="header-text">
+                <h1>Pavel Krchňavý</h1>
+                <div class="subtitle">Digital Projects & Project Management</div>
+                <div class="contact-info">
+                    <span>📍 Brno, CZ</span>
+                    <span>📧 <a href="mailto:pavel@krchnavy.info">pavel@krchnavy.info</a></span>
+                    <span>💼 Freelance</span>
                 </div>
-            </details>
-        </div>
+            </div>
+            <img src="square-image (1).jpg" alt="Pavel Krchňavý" class="profile-photo">
+        </header>
 
-        <div class="experience-item">
-            <details>
-                <summary>Video maker — OSVČ</summary>
-                <div class="details-content">
-                    <span class="date">2025 — nyní</span>
-                    <p>Tvorba a střih krátkého video obsahu pro klienty jako doplněk ke správě sociálních sítí.</p>
-                </div>
-            </details>
-        </div>
+        <section>
+            <h2>Profile</h2>
+            <p>Freelance digital consultant focused on website development, management, and social media for Czech businesses. Concurrently studying Business Economics and Management at Masaryk University.</p>
+        </section>
 
-        <div class="experience-item">
-            <details>
-                <summary>Vedoucí dobrovolnického týmu — Konference Charis</summary>
-                <div class="details-content">
-                    <span class="date">2023 — nyní</span>
-                    <p>Vedení dobrovolnického týmu na velké brněnské konferenci. Organizace stovky dobrovolníků.</p>
-                </div>
-            </details>
-        </div>
+        <section>
+            <h2>Experience</h2>
+            
+            <div class="experience-item">
+                <details>
+                    <summary>E-shop Administrator — Freelance</summary>
+                    <div class="details-content">
+                        <span class="date">2026 — Present</span>
+                        <p>SEO and GEO optimization of a Shoptet e-shop: technical SEO, structured data, category content, monitoring visibility in AI search engines. Product import and overall website management.</p>
+                    </div>
+                </details>
+            </div>
 
-        <div class="experience-item">
-            <details>
-                <summary>Lektor ČLK Narval</summary>
-                <div class="details-content">
-                    <span class="date">2022 — nyní</span>
-                    <p>Aktivní lektor kurzu skautského vzdělávání ČLK Narval.</p>
-                </div>
-            </details>
-        </div>
+            <div class="experience-item">
+                <details>
+                    <summary>Video Creator — Freelance</summary>
+                    <div class="details-content">
+                        <span class="date">2025 — Present</span>
+                        <p>Creation and editing of short-form video content for clients as a supplement to social media management.</p>
+                    </div>
+                </details>
+            </div>
 
-        <!-- UKONČENÉ (Minulost) -->
-        <div class="experience-item">
-            <details>
-                <summary>Vedoucí skautského oddílu a tábora</summary>
-                <div class="details-content">
-                    <span class="date">2024 — 2026</span>
-                    <p>Vedení skautského oddílu. Jako hlavní vedoucí tábora odvedeno 6 dětských táborů, každý pro cca 60 dětí a 25 vedoucích.</p>
-                </div>
-            </details>
-        </div>
+            <div class="experience-item">
+                <details>
+                    <summary>Volunteer Team Leader — Charis Conference</summary>
+                    <div class="details-content">
+                        <span class="date">2023 — Present</span>
+                        <p>Leading a volunteer team at a major conference in Brno. Organizing hundreds of volunteers.</p>
+                    </div>
+                </details>
+            </div>
 
-        <div class="experience-item">
-            <details>
-                <summary>Obchodní zástupce — Webařský prostor</summary>
-                <div class="details-content">
-                    <span class="date">2025 — 2026</span>
-                    <p>Prodej webařských služeb malým firmám, od prvního kontaktu po uzavření spolupráce.</p>
-                </div>
-            </details>
-        </div>
+            <div class="experience-item">
+                <details>
+                    <summary>Instructor — ČLK Narval</summary>
+                    <div class="details-content">
+                        <span class="date">2022 — Present</span>
+                        <p>Active instructor for the ČLK Narval scout training and leadership course.</p>
+                    </div>
+                </details>
+            </div>
 
-        <div class="experience-item">
-            <details>
-                <summary>Turistický průvodce — OSVČ, Vídeň</summary>
-                <div class="details-content">
-                    <span class="date">2025</span>
-                    <p>Provázení turistických skupin, práce s cizojazyčným publikem.</p>
-                </div>
-            </details>
-        </div>
+            <div class="experience-item">
+                <details>
+                    <summary>Scout Troop and Camp Leader</summary>
+                    <div class="details-content">
+                        <span class="date">2024 — 2026</span>
+                        <p>Led a scout troop. Served as the head camp leader for 6 children's camps, each for approx. 60 children and 25 leaders.</p>
+                    </div>
+                </details>
+            </div>
 
-        <div class="experience-item">
-            <details>
-                <summary>Kurýr — Wolt, Brno</summary>
-                <div class="details-content">
-                    <span class="date">2021 — 2025</span>
-                    <p>Brigáda souběžně se studiem.</p>
-                </div>
-            </details>
-        </div>
-    </section>
+            <div class="experience-item">
+                <details>
+                    <summary>Sales Representative — Webařský prostor</summary>
+                    <div class="details-content">
+                        <span class="date">2025 — 2026</span>
+                        <p>Selling web services to small businesses, managing the process from initial contact to finalizing agreements.</p>
+                    </div>
+                </details>
+            </div>
 
-    <section>
-        <h2>Vybrané projekty</h2>
-        <div class="project-item">
-            <h3>Wikitools.cz <span class="project-year">2026</span></h3>
-            <p>SEO a GEO pro e-shop s elektrickým nářadím — technické SEO, strukturovaná data, dashboard pro sledování viditelnosti v AI.</p>
-        </div>
-        <div class="project-item">
-            <h3>POS systém pro Charis <span class="project-year">2026</span></h3>
-            <p>Interní prodejní systém - webová aplikace.</p>
-        </div>
-        <div class="project-item">
-            <h3>Dyna optik a optika Fénix <span class="project-year">2026</span></h3>
-            <p>Videotvorba pro prezentaci služeb.</p>
-        </div>
-        <div class="project-item">
-            <h3>Lightning POS <span class="project-year">2026</span></h3>
-            <p>Platební systém na bázi Bitcoin Lightning Network s potvrzením plateb v reálném čase.</p>
-        </div>
-        <div class="project-item">
-            <h3>Curuba <span class="project-year">2025–26</span></h3>
-            <p>Vlastní konzultantská značka — marketingový web a vizuální identita.</p>
-        </div>
-    </section>
+            <div class="experience-item">
+                <details>
+                    <summary>Tour Guide — Freelance, Vienna</summary>
+                    <div class="details-content">
+                        <span class="date">2025</span>
+                        <p>Guiding tourist groups, working and communicating with international audiences.</p>
+                    </div>
+                </details>
+            </div>
 
-    <section>
-        <h2>Dovednosti</h2>
-        <h3>Hard skills</h3>
-        <div class="skills-container">
-            <span class="skill-tag">SEO & GEO optimalizace</span>
-            <span class="skill-tag">Základní IT znalost</span>
-            <span class="skill-tag">Tvorba webů</span>
-            <span class="skill-tag">Shoptet</span>
-            <span class="skill-tag">Znalost nástrojů Google a Microsoft</span>
-            <span class="skill-tag">Pokročilá práce s AI</span>
-            <span class="skill-tag">Video a střih</span>
-            <span class="skill-tag">Lightning Network</span>
-        </div>
-        
-        <h3 style="margin-top: 10px;">Soft skills</h3>
-        <div class="skills-container">
-            <span class="skill-tag soft">Vedení týmu</span>
-            <span class="skill-tag soft">Efektivní komunikace</span>
-            <span class="skill-tag soft">Organizační schopnosti</span>
-            <span class="skill-tag soft">Samostatnost</span>
-            <span class="skill-tag soft">Řešení problémů</span>
-            <span class="skill-tag soft">Ochota učit se</span>
-            <span class="skill-tag soft">Flexibilita</span>
-            <span class="skill-tag soft">Spolehlivost</span>
-            <span class="skill-tag soft">Práce pod tlakem</span>
-        </div>
-    </section>
+            <div class="experience-item">
+                <details>
+                    <summary>Courier — Wolt, Brno</summary>
+                    <div class="details-content">
+                        <span class="date">2021 — 2025</span>
+                        <p>Part-time job concurrent with studies.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
 
-    <section>
-        <h2>Vzdělání</h2>
-        <div class="project-item">
-            <h3>Masarykova univerzita, Brno — podniková ekonomika a management</h3>
-            <span class="date">2026 — nyní</span>
-            <p>Bakalářské studium.</p>
-        </div>
-    </section>
+        <section>
+            <h2>Selected Projects</h2>
+            <div class="project-item">
+                <h3>Wikitools.cz <span class="project-year">2026</span></h3>
+                <p>SEO and GEO for a power tools e-shop — technical SEO, structured data, dashboard for tracking AI visibility.</p>
+            </div>
+            <div class="project-item">
+                <h3>POS system for Charis <span class="project-year">2026</span></h3>
+                <p>Internal point-of-sale system - web application.</p>
+            </div>
+            <div class="project-item">
+                <h3>Dyna optik and optika Fénix <span class="project-year">2026</span></h3>
+                <p>Video production for service presentation.</p>
+            </div>
+            <div class="project-item">
+                <h3>Lightning POS <span class="project-year">2026</span></h3>
+                <p>Payment system based on the Bitcoin Lightning Network with real-time payment confirmation.</p>
+            </div>
+            <div class="project-item">
+                <h3>Curuba <span class="project-year">2025–26</span></h3>
+                <p>Personal consulting brand — marketing website and visual identity.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Skills</h2>
+            <h3>Hard skills</h3>
+            <div class="skills-container">
+                <span class="skill-tag">SEO & GEO Optimization</span>
+                <span class="skill-tag">Basic IT Knowledge</span>
+                <span class="skill-tag">Web Development</span>
+                <span class="skill-tag">Shoptet</span>
+                <span class="skill-tag">Google & Microsoft Tools</span>
+                <span class="skill-tag">Advanced AI Utilization</span>
+                <span class="skill-tag">Video Editing</span>
+                <span class="skill-tag">Lightning Network</span>
+            </div>
+            
+            <h3 style="margin-top: 10px;">Soft skills</h3>
+            <div class="skills-container">
+                <span class="skill-tag soft">Team Leadership</span>
+                <span class="skill-tag soft">Effective Communication</span>
+                <span class="skill-tag soft">Organizational Skills</span>
+                <span class="skill-tag soft">Independence</span>
+                <span class="skill-tag soft">Problem Solving</span>
+                <span class="skill-tag soft">Willingness to Learn</span>
+                <span class="skill-tag soft">Flexibility</span>
+                <span class="skill-tag soft">Reliability</span>
+                <span class="skill-tag soft">Working Under Pressure</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="project-item">
+                <h3>Masaryk University, Brno — Business Economics and Management</h3>
+                <span class="date">2026 — Present</span>
+                <p>Bachelor's degree program.</p>
+            </div>
+        </section>
+    </div>
 
 </div>
+
+<script>
+    function switchLang(lang) {
+        const csContent = document.getElementById('content-cs');
+        const enContent = document.getElementById('content-en');
+        const btnCs = document.getElementById('btn-cs');
+        const btnEn = document.getElementById('btn-en');
+
+        if (lang === 'en') {
+            csContent.style.display = 'none';
+            enContent.style.display = 'block';
+            btnEn.classList.add('active');
+            btnCs.classList.remove('active');
+            document.title = "Pavel Krchňavý - Curriculum vitae (EN)";
+            document.documentElement.lang = "en";
+        } else {
+            csContent.style.display = 'block';
+            enContent.style.display = 'none';
+            btnCs.classList.add('active');
+            btnEn.classList.remove('active');
+            document.title = "Pavel Krchňavý - Curriculum vitae";
+            document.documentElement.lang = "cs";
+        }
+    }
+</script>
 
 </body>
 </html>
